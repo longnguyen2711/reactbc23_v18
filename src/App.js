@@ -1,24 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
+import {Router, Switch, Route} from 'react-router-dom'
+import {createBrowserHistory} from 'history'
+import { Fragment } from 'react';
+import HeaderHome from './_Components/HeaderHome';
+import HomePage from './pages/HomePage/HomePage';
+
+export const history = createBrowserHistory()
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router history={history}>
+      <Switch>
+        <Route exact path={'/'} render={(propsRoute) =>{ // location, history, 
+          return <Fragment>
+            <HeaderHome />
+            <HomePage {...propsRoute}/>
+          </Fragment>}}/>    
+      </Switch>
+    </Router>
   );
 }
 
