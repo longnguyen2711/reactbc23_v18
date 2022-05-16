@@ -2,7 +2,7 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { TOKEN_CYBERSOFT } from "../../util/setting";
+import { http, TOKEN_CYBERSOFT } from "../../util/setting";
 
 const initialState = {
   arrFilm: [],
@@ -29,14 +29,18 @@ export default phimReducer.reducer;
 export const getFilmApiAction = () => {
   return async (dispatch) => {
     try {
-      let result = await axios({
-        url: "https://movienew.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01",
-        method: "GET",
-        headers: {
-          TokenCybersoft: TOKEN_CYBERSOFT,
-        },
-      });
+      
+      // let result = await axios({
+      //   url: "https://movienew.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01",
+      //   method: "GET",
+      //   headers: {
+      //     TokenCybersoft: TOKEN_CYBERSOFT,
+      //   },
+      // });
+      let result = await http.get('/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01');
       // Data trả về result.data.content
+
+      
       const action = layDanhSachPhimAction(result.data.content);
       /*
         action = {

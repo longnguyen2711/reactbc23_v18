@@ -3,10 +3,13 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+// import 'antd/dist/antd.css';
 
 // Cấu hình redux
 import { Provider } from "react-redux";
 import { store } from "./redux/configStore";
+
+import './assets/scss/index.scss'
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

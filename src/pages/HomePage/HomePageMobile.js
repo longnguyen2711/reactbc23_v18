@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getFilmApiAction } from "../../redux/Reducers/phimReducer";
 
-export default function HomePage(props) {
+export default function HomePageMobile(props) {
   // useSelector
   const { arrFilm } = useSelector((reducer) => reducer.phimReducer);
   const dispatch = useDispatch();
@@ -19,23 +19,28 @@ export default function HomePage(props) {
   const renderFilms = () => {
     return arrFilm.map((film, index) => {
       return (
-        <div className="col-4 col-md-4 col-sm-12" key={index}>
-          <div className="card">
-            <img width={150} src={film.hinhAnh} alt="..." />
-            <div className="card-body">
-              <p>{film.tenPhim}</p>
-              <p className="card-body">{film.moTa.length > 60 ? <p>{film.moTa.slice(0,60)}...</p> : <p>{film.moTa}</p>}</p>
-              <NavLink to="/detail" className="btn btn-success">Đặt vé</NavLink>
-            </div>
-          </div>
-        </div>
+        <tr key={index}>
+            <td style={{swidth: '20%'}}>
+                <img width={100} src={film.hinhAnh} alt="..."/>
+            </td>
+            <td>
+                <p className="card-body">{film.moTa.length > 60 ? <p>{film.moTa.slice(0,60)}...</p> : <p>{film.moTa}</p>}</p>
+            </td>
+            <td style={{width:"20%"}}>
+                <NavLink to="/" className="btn btn-success">Đặt vé</NavLink>
+            </td>
+        </tr>
       );
     });
   };
 
   return (
     <div className="container">
-      <div className="row">{renderFilms()}</div>
+      <table className="table" border="0">
+          <tbody>
+            {renderFilms()}
+          </tbody>
+      </table>
     </div>
   );
 }
